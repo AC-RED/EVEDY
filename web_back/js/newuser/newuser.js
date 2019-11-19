@@ -17,6 +17,16 @@ var user = {
         callback(res)
       }
     )
+  },
+
+
+
+  logout: function() {
+
+    $.post(dizhi + '/admin/getuser')
   }
+
+
+
 
 }

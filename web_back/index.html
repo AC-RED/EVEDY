@@ -44,7 +44,7 @@
         <div class="user_center_link">
             <a href="user.html" onclick="setMenu(3,0)" target="main_frame">个人中心</a>
             <img src="images/2.jpg" alt="person">
-            <a href="#"><i class="iconfont icon-tuichu"></i> 退出</a>
+            <a href="#" id="logout_b"><i class="iconfont icon-tuichu"></i> 退出</a>
         </div>
     </div>
 
@@ -104,6 +104,20 @@
                 $('.level02').children().eq(n).addClass('active').siblings().removeClass('active');
             }
         }
+    </script>
+
+    <script src="./js/newuser/newuser.js"></script>
+
+    <script>
+        // 完成退出登录
+
+        $('#logout_b').click(function() {
+
+            if (window.confirm('确定退出?')) {
+                location.href = './login.html'
+            }
+
+        })
     </script>
 
 
