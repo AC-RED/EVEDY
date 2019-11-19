@@ -24,9 +24,23 @@ var user = {
   logout: function() {
 
     $.post(dizhi + '/admin/getuser')
+  },
+
+
+  getuser: function() {
+
+    $.get(dizhi + '/admin/getuser',
+      function(res) {
+        $('#know_name').text(res.data.nickname)
+        console.log(res.data.nickname);
+
+
+        $('.know_img').prop('src', res.data.user_pic)
+        console.log(res.data.user_pic);
+
+
+      }
+    )
   }
-
-
-
 
 }
