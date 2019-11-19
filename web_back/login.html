@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="./js/jquery-1.12.4.min.js"></script>
 </head>
 
 <body>
@@ -25,12 +26,50 @@
                 <i class="iconfont icon-key"></i>
                 <input type="text" class="input_txt" placeholder="邮箱/手机号">
                 <input type="password" class="input_pass" placeholder="密码">
-                <input type="submit" class="input_sub" value="登 录">
+                <input type="button" class="input_sub" value="登 录">
             </form>
         </div>
 
-    </div> 
+    </div>
+    <script src="./js/newuser/newuser.js"></script>
+    <script>
+        $('.input_sub').click(function() {
 
+
+
+            var user_name = $('.input_txt').val().trim()
+
+            var pass_word = $('.input_pass').val().trim()
+
+            if (user_name == '' || pass_word == '') {
+                alert('账号密码不能为空')
+                return
+            }
+
+            user.login(user_name, pass_word, function(res) {
+                console.log(res);
+
+                if (res.code == 200) {
+                    location.href = "./index.html"
+
+                } else {
+                    alert(res.msg)
+                }
+
+
+            })
+
+
+
+
+
+
+
+
+
+
+        })
+    </script>
 </body>
 
 </html>
