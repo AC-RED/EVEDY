@@ -1,8 +1,11 @@
+var dizhi = 'http://localhost:8000/'
+
+
 var user = {
 
   login: function(my_name, my_password, callback) {
 
-    $.post(usergit.log_in, {
+    $.post(dizhi + 'admin/login', {
 
         user_name: my_name,
 
@@ -20,7 +23,7 @@ var user = {
 
   logout: function(callback) {
 
-    $.post(usergit.log_out, function(res) {
+    $.post(dizhi + 'admin/logout', function(res) {
       callback(res)
     })
 
@@ -29,7 +32,7 @@ var user = {
 
   getuser: function(callback) {
 
-    $.get(usergit.get_user,
+    $.get(dizhi + 'admin/getuser',
       function(res) {
         callback(res)
       }
