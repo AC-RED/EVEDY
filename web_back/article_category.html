@@ -85,28 +85,29 @@
             backdrop: false
         });
 
-        $('#model_shutoff').click(function() {
-            alert('shutoff');
-            $('#addModal').modal('hide');
-        });
+        // $('#model_shutoff').click(function() {
+        //     alert('shutoff');
+        //     $('#addModal').modal('hide');
+        // });
 
-        $('#model_add').click(function() {
-            alert('add');
-            $('#addModal').modal('hide');
-        });
+        // $('#model_add').click(function() {
+        //     alert('add');
+        //     $('#addModal').modal('hide');
+        // });
 
-        $('.category_table').delegate('a', 'click', function() {
-            if ($(this).hasClass('btn-info')) {
-                $('#addModal .modal-title').html('修改分类名称');
-                $('#addModal').modal('show');
-            }
-        })
+        // $('.category_table').delegate('a', 'click', function() {
+        //     if ($(this).hasClass('btn-info')) {
+        //         $('#addModal .modal-title').html('修改分类名称');
+        //         $('#addModal').modal('show');
+        //     }
+        // })
     </script>
-
+    <!-- <script src="js/bootstrap/js/bootstrap.min.js"></script> -->
     <script src="./js/jquery-1.12.4.min.js"></script>
     <script src="./js/newuser/新02综合.js"></script>
     <script src="./js/newuser/新02.js"></script>
     <script src="./js/template-web.js"></script>
+
 
     <script id="tempTable" type="text/html">
         {{each data item}}
@@ -139,6 +140,35 @@
         //     // template(id,对象)
         //     // $('#father').html(template('tempTable', res));
         // });
+
+        // 添加列表
+
+        $('#model_shutoff').click(function() {
+            $('#addModal').hide()
+        })
+
+        $('#model_add').click(function(res) {
+            // $('#addModal').show()
+
+            var rel_name = $('#recipient-name').val().trim()
+
+            var els_name = $('#recipient-name').val().trim()
+
+
+
+            world_dispose.worldadd(rel_name, els_name, function(res) {
+
+                console.log(res);
+
+                if (res.code == 200) {
+                    world_dispose.getworld(function(res) {
+                        $('#father').html(template('tempTable', res));
+
+                    })
+                }
+
+            })
+        })
     </script>
 </body>
 

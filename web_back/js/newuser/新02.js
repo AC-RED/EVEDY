@@ -6,11 +6,22 @@ var world_dispose = {
     $.get(user_need.world_get, function(res) {
       callback(res)
     })
+  },
+
+  worldadd: function(fname, fslug, callback) {
+    $.post(user_need.world_add, {
 
 
+        name: fname,
+        slug: fslug
+
+      },
+      function(res) {
+        callback(res)
+      }
+
+    )
   }
-
-
 
 
 }
