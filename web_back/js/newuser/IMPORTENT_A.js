@@ -1,0 +1,1 @@
+var dizhi = 'http://localhost:8000'

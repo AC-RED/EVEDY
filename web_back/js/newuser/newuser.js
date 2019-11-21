@@ -21,24 +21,20 @@ var user = {
 
 
 
-  logout: function() {
+  logout: function(callback) {
 
-    $.post(dizhi + '/admin/getuser')
+    $.post(dizhi + '/admin/logout'),
+      function(res) {
+        callback(res)
+      }
   },
 
 
-  getuser: function() {
+  getuser: function(callback) {
 
     $.get(dizhi + '/admin/getuser',
       function(res) {
-        $('#know_name').text(res.data.nickname)
-        console.log(res.data.nickname);
-
-
-        $('.know_img').prop('src', res.data.user_pic)
-        console.log(res.data.user_pic);
-
-
+        callback(res)
       }
     )
   }
