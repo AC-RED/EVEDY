@@ -23,7 +23,7 @@ var world_dispose = {
     )
   },
 
-  worldremove: function(callback) {
+  worldremove: function(ids, callback) {
     $.post(user_need.world_remove, { id: ids }, function(res) { callback(res) })
   }
 

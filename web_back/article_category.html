@@ -67,7 +67,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="control-label">分类别名:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <input type="text" class="form-control" id="elset-name">
                         </div>
                     </form>
                 </div>
@@ -115,8 +115,8 @@
             <td>{{item.name}}</td>
             <td>{{item.slug}}</td>
             <td class="text-center">
-                <a href="javascript:editTr({&quot;id&quot;:&quot;4&quot;,&quot;slug&quot;:&quot;travel&quot;,&quot;name&quot;:&quot;爱旅行&quot;});" class="btn btn-info btn-xs">编辑</a>
-                <a href="javascript:deleteTr( 4 );" class="btn btn-danger btn-xs">删除</a>
+                <a href="javascript:editTr({&quot;id&quot;:&quot;4&quot;,&quot;slug&quot;:&quot;travel&quot;,&quot;name&quot;:&quot;爱旅行&quot;});" class="btn btn-info btn-xs change">编辑</a>
+                <a href="javascript:;" ids={{item.id}} class="btn btn-danger btn-xs del">删除</a>
             </td>
         </tr>
         {{/each}}
@@ -127,6 +127,10 @@
         // 提取文章列表完成
         world_dispose.getworld(function(res) {
             $('#father').html(template('tempTable', res));
+            console.log(res);
+            // console.log(template('tempTable', res));
+
+
 
         })
 
@@ -152,7 +156,7 @@
 
             var rel_name = $('#recipient-name').val().trim()
 
-            var els_name = $('#recipient-name').val().trim()
+            var els_name = $('#elset-name').val().trim()
 
 
 
@@ -161,6 +165,8 @@
                 console.log(res);
 
                 if (res.code == 200) {
+                    $('#recipient-name').val('')
+                    $('#elset-name').val('')
                     world_dispose.getworld(function(res) {
                         $('#father').html(template('tempTable', res));
 
@@ -172,10 +178,36 @@
 
         // 删除列表
 
-        world_dispose.worldremove(function(res) {
-            console.log(res);
+        // var ids = new Date() * 1
+        // console.log(ids);
 
+
+        $('#father').on('click', '.del', function() {
+
+            var ids = $(this).attr('ids')
+                // var other = $(this).parent().siblings().text()
+                // console.log(other);
+
+
+            // console.log(ids);
+            if (window.confirm('确定？') == false) {
+                return
+            }
+            world_dispose.worldremove(ids, function(res) {
+
+
+                if (res.code == 200) {
+                    // other = ''
+                    world_dispose.getworld(function(res) {
+                        $('#father').html(template('tempTable', res));
+                    })
+                }
+
+            })
         })
+
+
+        // 编辑类开始
     </script>
 </body>
 
