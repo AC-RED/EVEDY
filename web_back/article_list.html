@@ -53,11 +53,11 @@
                         <th class="text-center" width="100">操作</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="world_box">
 
 
 
-                    <tr>
+                    <!-- <tr>
 
                         <td>王积千造统最头</td>
                         <td>杰克</td>
@@ -72,7 +72,7 @@
                             <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
                             <a href="javascript:deleteTr( 1005 );" class="btn btn-danger btn-xs">删除</a>
                         </td>
-                    </tr>
+                    </tr> -->
 
 
 
@@ -114,6 +114,29 @@
 <script src="./js/newuser/新02.js"></script>
 <script src="./js/template-web.js"></script>
 
+<script id="for_all_world" type="text/html">
+
+    {{each data item}}
+    <tr>
+
+        <td>{{item.title}}</td>
+        <td>{{item.author}}</td>
+        <td>{{item.type}}</td>
+        <td class="text-center">{{item.date}}</td>
+
+
+        <td class="text-center">{{item.state}}</td>
+
+
+        <td class="text-center">
+            <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
+            <a href="javascript:deleteTr( 1005 );" class="btn btn-danger btn-xs">删除</a>
+        </td>
+    </tr>
+    {{/each}}
+</script>
+
+
 <script id="tempTable" type="text/html">
     <option>全部分类</option>
     {{each data item}}
@@ -125,6 +148,12 @@
     world_dispose.getworld(function(res) {
         console.log(res);
         $('#selCategory').html(template('tempTable', res))
+    })
+
+    world_dispose.allWorld(function(res) {
+        console.log(res);
+        $('#world_box').html(template('for_all_world', res))
+
     })
 </script>
 

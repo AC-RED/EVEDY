@@ -40,5 +40,11 @@ var world_dispose = {
         callback(res)
       }
     )
+  },
+
+  allWorld: function(callback) {
+    $.get(user_need.all_world, function(res) {
+      callback(res)
+    })
   }
 }
