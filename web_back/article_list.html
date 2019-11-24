@@ -55,28 +55,22 @@
                 </thead>
                 <tbody id="world_box">
 
-
-
                     <!-- <tr>
 
-                        <td>王积千造统最头</td>
-                        <td>杰克</td>
-                        <td>奇趣事</td>
-                        <td class="text-center">2017-06-08 07:08:46</td>
-
-
-                        <td class="text-center">已发布</td>
-
-
-                        <td class="text-center">
-                            <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
-                            <a href="javascript:deleteTr( 1005 );" class="btn btn-danger btn-xs">删除</a>
-                        </td>
-                    </tr> -->
-
-
-
-
+                                <td>{{item.title}}</td>
+                                <td>{{item.author}}</td>
+                                <td>{{item.type}}</td>
+                                <td class="text-center">{{item.date}}</td>
+                        
+                        
+                                <td class="text-center">{{item.state}}</td>
+                        
+                        
+                                <td class="text-center">
+                                    <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
+                                    <a href="javascript:;" for_delete='{{item.id}}' class="btn btn-danger btn-xs">删除</a>
+                                </td>
+                            </tr> -->
 
 
                 </tbody>
@@ -130,7 +124,7 @@
 
         <td class="text-center">
             <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
-            <a href="javascript:deleteTr( 1005 );" class="btn btn-danger btn-xs">删除</a>
+            <a href="javascript:;" for_delete='{{item.id}}' class="btn btn-danger btn-xs del">删除</a>
         </td>
     </tr>
     {{/each}}
@@ -145,15 +139,41 @@
 </script>
 
 <script>
+    // 用temptable添加文章类型
     world_dispose.getworld(function(res) {
         console.log(res);
         $('#selCategory').html(template('tempTable', res))
     })
 
+
+    // 03文章获取all
     world_dispose.allWorld(function(res) {
-        console.log(res);
+        // console.log(res);
         $('#world_box').html(template('for_all_world', res))
 
+    })
+
+
+    // 删除文章
+
+    $('#world_box').on('click', '.del', function() {
+        var id = $(this).attr('for_delete')
+            // console.log(id);
+
+        world_dispose.deleteWorld(id, function(res) {
+            if (window.confirm('确定删除吗') == false) {
+                return
+            }
+            // console.log(res);
+            if (res.code == 200) {
+                world_dispose.allWorld(function(res) {
+                    // console.log(res);
+                    $('#world_box').html(template('for_all_world', res))
+
+                })
+            }
+
+        })
     })
 </script>
 

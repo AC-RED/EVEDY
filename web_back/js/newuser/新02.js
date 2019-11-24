@@ -46,5 +46,11 @@ var world_dispose = {
     $.get(user_need.all_world, function(res) {
       callback(res)
     })
+  },
+
+  deleteWorld: function(id, callback) {
+    $.get(user_need.delete_world, { id: id }, function(res) {
+      callback(res)
+    })
   }
 }

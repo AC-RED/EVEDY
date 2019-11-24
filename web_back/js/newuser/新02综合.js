@@ -9,5 +9,6 @@ var user_need = {
 
   // 第三天  文章搜索
 
-  all_world: jichudizhi + 'admin/search'
+  all_world: jichudizhi + 'admin/search',
+  delete_world: jichudizhi + 'admin/article_delete'
 }
