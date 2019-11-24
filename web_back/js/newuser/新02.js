@@ -3,9 +3,10 @@ var world_dispose = {
 
   getworld: function(callback) {
 
-    $.get(user_need.world_get, function(res) {
-      callback(res)
-    })
+    $.get(user_need.world_get,
+      function(res) {
+        callback(res)
+      })
   },
 
   worldadd: function(fname, fslug, callback) {
@@ -50,6 +51,33 @@ var world_dispose = {
 
   deleteWorld: function(id, callback) {
     $.get(user_need.delete_world, { id: id }, function(res) {
+      callback(res)
+    })
+  },
+
+  editWorld: function(id, title, cover, type, date, content, callback) {
+    $.post(user_need.edit_world,
+
+      {
+
+        id: id,
+        title: title,
+        cover: cover,
+        type: type,
+        date: date,
+        content: content,
+
+      },
+
+      function(res) {
+        callback(res)
+      }
+
+    )
+  },
+
+  theWorld: function(id, callback) {
+    $.get(user_need.all_world, { id: id }, function(res) {
       callback(res)
     })
   }

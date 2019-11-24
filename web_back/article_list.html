@@ -104,6 +104,7 @@
 
 </body>
 
+<script src="../web_back/js/bootstrap/js/bootstrap.min.js"></script>
 <script src="./js/newuser/新02综合.js"></script>
 <script src="./js/newuser/新02.js"></script>
 <script src="./js/template-web.js"></script>
@@ -123,7 +124,7 @@
 
 
         <td class="text-center">
-            <a href="article_edit.html" class="btn btn-default btn-xs">编辑</a>
+            <a href="article_edit.html?id={{item.id}}" class="btn btn-default btn-xs">编辑</a>
             <a href="javascript:;" for_delete='{{item.id}}' class="btn btn-danger btn-xs del">删除</a>
         </td>
     </tr>
@@ -175,6 +176,8 @@
 
         })
     })
+
+    // 编辑文章开始
 </script>
 
 </html>

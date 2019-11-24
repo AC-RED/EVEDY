@@ -27,25 +27,25 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">文章标题：</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" value="文章标题文字">
+                        <input type="text" class="form-control" id="article_title">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="this_img">
                     <label for="inputPassword3" class="col-sm-2 control-label">文章封面：</label>
                     <div class="col-sm-10">
                         <img src="images/pic06.jpg" class="article_cover">
                         <input type="file" id="exampleInputFile">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="for_type">
                     <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
                     <div class="col-sm-4">
-                        <select class="form-control">
-                            <option>类别一</option>
+                        <select class="form-control" id="type_all" name="type">
+                            <!-- <option>类别一</option>
                             <option>类别二</option>
                             <option>类别三</option>
                             <option selected>类别四</option>
-                            <option>类别五</option>
+                            <option>类别五</option> -->
                         </select>
                     </div>
                 </div>
@@ -79,5 +79,48 @@
     </div>
 
 </body>
+
+<script src="../web_back/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="./js/newuser/新02综合.js"></script>
+<script src="./js/newuser/新02.js"></script>
+<script src="./js/template-web.js"></script>
+
+
+
+<script id="tempTable" type="text/html">
+    <option>全部分类</option>
+    {{each data item}}
+    <option>{{item.name}}</option>
+    {{/each}}
+</script>
+
+
+<script>
+    var id = window.location.search.substr(4)
+        // console.log(id);
+
+    world_dispose.theWorld(id, function(res) {
+        console.log(res);
+
+        world_dispose.getworld(function(ress) {
+            console.log(ress);
+            $('#type_all').html(template('tempTable', ress))
+                // $('#type_all').val()
+            $('#type_all').val(res.data.type)
+                // console.log(res.data.type);
+
+            // console.log($('#type_all').val());
+        })
+
+        $('#article_title').val(res.data.title)
+        $('#this_img').prop('src', res.data.cover)
+
+        $('#dateinput').val(res.data.date)
+        $('#rich_content').val(res.data.content)
+
+
+
+    })
+</script>
 
 </html>
